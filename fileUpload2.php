@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="shortcut icon" href="../Resources/hmbct.png" />
+	<title>File upload 2</title>
 </head>
 <body>
 
